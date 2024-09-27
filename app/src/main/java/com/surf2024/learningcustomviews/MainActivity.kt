@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             tab.text = when (position) {
                 0 -> "First"
                 1 -> "Second"
+                2 -> "Third"
                 else -> null
             }
         }.attach()
