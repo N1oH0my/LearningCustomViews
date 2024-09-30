@@ -14,19 +14,48 @@ class AvatarsLineView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
-    private var imageUrls: List<String> = emptyList()
+    var imageUrls: List<String> = emptyList()
+        set(value) {
+            field = value
+            requestLayout()
+        }
 
-    private var maxImages: Int = 4
-    private var avatarRadius: Float = 20f
-    private var avatarSize: Float = 200f
-    private var avatarsMargin: Float = 100f
-    private var textSize: Float = 50f
+    var maxImages: Int = 4
+        set(value) {
+            field = value
+            requestLayout()
+        }
+
+    var avatarRadius: Float = 20f
+        set(value) {
+            field = value
+            requestLayout()
+        }
+
+    var avatarSize: Float = 200f
+        set(value) {
+            field = value
+            requestLayout()
+        }
+
+    var avatarsMargin: Float = 100f
+        set(value) {
+            field = value
+            requestLayout()
+        }
+
+    var textSize: Float = 50f
+        set(value) {
+            field = value
+            requestLayout()
+        }
 
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.AvatarsLineView, 0, 0).apply {
             try {
                 maxImages = getInteger(R.styleable.AvatarsLineView_max_avatars, maxImages)
-                avatarRadius = getDimension(R.styleable.AvatarsLineView_avatars_radius, avatarRadius)
+                avatarRadius =
+                    getDimension(R.styleable.AvatarsLineView_avatars_radius, avatarRadius)
                 avatarSize = getDimension(R.styleable.AvatarsLineView_avatar_size, avatarSize)
                 avatarsMargin =
                     getDimension(R.styleable.AvatarsLineView_avatars_margin, avatarsMargin)

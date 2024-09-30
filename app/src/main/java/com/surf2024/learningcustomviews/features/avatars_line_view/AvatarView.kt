@@ -44,7 +44,6 @@ class AvatarView @JvmOverloads constructor(
         }
 
         radius = avatarRadius
-        cardElevation = 8f
     }
 
     fun setImage(url: String?) {
