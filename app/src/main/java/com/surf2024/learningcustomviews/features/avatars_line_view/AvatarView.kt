@@ -49,15 +49,8 @@ class AvatarView @JvmOverloads constructor(
     fun setImage(url: String?) {
         Glide.with(context)
             .load(url)
-            .placeholder(
-                ColorDrawable(
-                    ContextCompat.getColor(
-                        context,
-                        android.R.color.holo_blue_bright
-                    )
-                )
-            )
-            .error(ColorDrawable(ContextCompat.getColor(context, android.R.color.holo_red_light)))
+            .placeholder(R.drawable.image_view_bg)
+            .error(R.drawable.image_view_bg)
             .into(imageView)
     }
 
