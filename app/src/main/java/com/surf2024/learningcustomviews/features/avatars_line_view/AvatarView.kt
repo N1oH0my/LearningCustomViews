@@ -1,13 +1,11 @@
 package com.surf2024.learningcustomviews.features.avatars_line_view
 
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.surf2024.learningcustomviews.R
 
@@ -31,7 +29,7 @@ class AvatarView @JvmOverloads constructor(
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
             foregroundGravity = Gravity.CENTER
             scaleType = ImageView.ScaleType.FIT_XY
-            setImageResource(R.drawable.image_view_bg)
+            setImageResource(R.drawable.avatar_view_placeholder)
         }
         addView(imageView)
 
@@ -49,8 +47,8 @@ class AvatarView @JvmOverloads constructor(
     fun setImage(url: String?) {
         Glide.with(context)
             .load(url)
-            .placeholder(R.drawable.image_view_bg)
-            .error(R.drawable.image_view_bg)
+            .placeholder(R.drawable.avatar_view_placeholder)
+            .error(R.drawable.avatar_view_placeholder)
             .into(imageView)
     }
 
