@@ -27,10 +27,6 @@ class CircularAvatarsLineFragmentView : Fragment() {
             "https://trikky.ru/wp-content/blogs.dir/1/files/2023/03/23/zyro-image-11.jpg",
         )
         circularImageView.setImages(imageUrls)
-        /*val imageView = view.findViewById<AvatarView>(R.id.custom_image_card)
-
-        imageView.setImage("https://img.freepik.com/free-photo/rainbow-at-the-end-of-a-road-landscape_23-2151596720.jpg?w=740&t=st=1727445059~exp=1727445659~hmac=f16f7d2f269809f57a6b63637f740272115eabdb3f0a0dfa07a9789b6bc3cfc5")
-        imageView.avatarRadius = 40f*/
         return view
     }
 
