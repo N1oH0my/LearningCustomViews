@@ -8,9 +8,12 @@
 
     <com.surf2024.learningcustomviews.features.avatars_line_view.AvatarsLineView
         android:id="@+id/custom_image_card_line"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        app:image_radius="50dp"
+        android:layout_height="wrap_content"
+        app:avatar_size="70dp"
+        app:avatars_radius="50dp"
         >
     </com.surf2024.learningcustomviews.features.avatars_line_view.AvatarsLineView>
 

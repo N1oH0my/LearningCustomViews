@@ -7,9 +7,10 @@
         <attr name="avatar_radius" format="dimension" />
     </declare-styleable>
     <declare-styleable name="AvatarsLineView">
-        <attr name="max_images" format="integer" />
-        <attr name="image_radius" format="dimension" />
-        <attr name="images_margin" format="dimension" />
+        <attr name="max_avatars" format="integer" />
+        <attr name="avatars_radius" format="dimension" />
+        <attr name="avatar_size" format="dimension" />
+        <attr name="avatars_margin" format="dimension" />
         <attr name="text_size" format="dimension" />
     </declare-styleable>
 </resources>
