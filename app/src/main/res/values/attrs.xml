@@ -3,4 +3,13 @@
     <declare-styleable name="ShapeDrawingView">
         <attr name="defaultColor" format="color"/>
     </declare-styleable>
+    <declare-styleable name="AvatarView">
+        <attr name="avatar_radius" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="AvatarsLineView">
+        <attr name="max_images" format="integer" />
+        <attr name="image_radius" format="dimension" />
+        <attr name="images_margin" format="dimension" />
+        <attr name="text_size" format="dimension" />
+    </declare-styleable>
 </resources>
