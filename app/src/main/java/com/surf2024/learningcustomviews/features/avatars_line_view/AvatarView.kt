@@ -68,7 +68,7 @@ class AvatarView @JvmOverloads constructor(
     }
 
     fun setImage(
-        url: String?,
+        url: String? = null,
         placeholderResId: Int = R.drawable.avatar_view_placeholder,
         errorResId: Int = R.drawable.avatar_view_placeholder
     ) {

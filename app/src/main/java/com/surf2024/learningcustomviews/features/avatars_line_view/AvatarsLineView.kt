@@ -163,7 +163,7 @@ class AvatarsLineView @JvmOverloads constructor(
                 avatarRadius = this@AvatarsLineView.avatarRadius
                 borderColor = avatarsBorderColor
                 borderWidth = avatarsBorderWidth
-                setImage("", lastPlaceholderResId, lastPlaceholderResId)
+                setImage(errorResId = lastPlaceholderResId)
                 val textView = TextView(context).apply {
                     text = "+$remainingCount"
                     setTextColor(Color.WHITE)
