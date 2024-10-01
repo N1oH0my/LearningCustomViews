@@ -85,11 +85,20 @@ class AvatarsLineView @JvmOverloads constructor(
             requestLayout()
         }
 
+    /**
+     * Цвет обводки.
+     * При установке нового значения будет запрашиваться повторная компоновка.
+     */
     var avatarsBorderColor: Int = Color.WHITE
         set(value) {
             field = value
             requestLayout()
         }
+
+    /**
+     * Размер обводки.
+     * При установке нового значения будет запрашиваться повторная компоновка.
+     */
     var avatarsBorderWidth: Int = 10
         set(value) {
             field = value
