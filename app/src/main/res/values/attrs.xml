@@ -14,5 +14,7 @@
         <attr name="avatar_size" format="dimension" />
         <attr name="avatars_margin" format="dimension" />
         <attr name="text_size" format="dimension" />
+        <attr name="avatars_border_color" format="color" />
+        <attr name="avatars_border_width" format="dimension" />
     </declare-styleable>
 </resources>

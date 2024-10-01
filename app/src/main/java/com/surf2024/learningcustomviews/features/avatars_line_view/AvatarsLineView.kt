@@ -85,6 +85,17 @@ class AvatarsLineView @JvmOverloads constructor(
             requestLayout()
         }
 
+    var avatarsBorderColor: Int = Color.WHITE
+        set(value) {
+            field = value
+            requestLayout()
+        }
+    var avatarsBorderWidth: Int = 10
+        set(value) {
+            field = value
+            requestLayout()
+        }
+
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.AvatarsLineView, 0, 0).apply {
             try {
@@ -95,6 +106,8 @@ class AvatarsLineView @JvmOverloads constructor(
                 avatarsMargin =
                     getDimension(R.styleable.AvatarsLineView_avatars_margin, avatarsMargin)
                 textSize = getDimension(R.styleable.AvatarsLineView_text_size, textSize)
+                avatarsBorderColor = getColor(R.styleable.AvatarsLineView_avatars_border_color, avatarsBorderColor)
+                avatarsBorderWidth = getDimensionPixelSize(R.styleable.AvatarsLineView_avatars_border_width, avatarsBorderWidth)
             } finally {
                 recycle()
             }
@@ -121,8 +134,8 @@ class AvatarsLineView @JvmOverloads constructor(
             val avatarView = AvatarView(context).apply {
                 layoutParams = LayoutParams(avatarSize.toInt(), avatarSize.toInt())
                 avatarRadius = this@AvatarsLineView.avatarRadius
-                borderColor = Color.WHITE
-                borderWidth = 5
+                borderColor = avatarsBorderColor
+                borderWidth = avatarsBorderWidth
                 setImage(urls[i])
             }
             addView(avatarView)
@@ -133,8 +146,8 @@ class AvatarsLineView @JvmOverloads constructor(
             val greyAvatarView = AvatarView(context).apply {
                 layoutParams = LayoutParams(avatarSize.toInt(), avatarSize.toInt())
                 avatarRadius = this@AvatarsLineView.avatarRadius
-                borderColor = Color.WHITE
-                borderWidth = 5
+                borderColor = avatarsBorderColor
+                borderWidth = avatarsBorderWidth
                 setImage("")
                 val textView = TextView(context).apply {
                     text = "+$remainingCount"

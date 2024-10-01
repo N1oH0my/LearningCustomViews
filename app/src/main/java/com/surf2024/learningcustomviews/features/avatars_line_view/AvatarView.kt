@@ -77,7 +77,7 @@ class AvatarView @JvmOverloads constructor(
         borderView.background = GradientDrawable().apply {
             setColor(Color.TRANSPARENT)
             setStroke(borderWidth, borderColor)
-            cornerRadius = avatarRadius
+            cornerRadius = avatarRadius-borderWidth/2
         }
 
         imageView.outlineProvider = object : ViewOutlineProvider() {
