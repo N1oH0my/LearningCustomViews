@@ -10,6 +10,7 @@ import android.view.ViewOutlineProvider
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import com.bumptech.glide.Glide
 import com.surf2024.learningcustomviews.R
@@ -41,7 +42,7 @@ class AvatarView @JvmOverloads constructor(
             updateShape()
         }
 
-    var borderColor: Int = DEFAULT_BORDER_COLOR
+    var borderColor: Int = ContextCompat.getColor(context, R.color.black)
         set(value) {
             field = value
             updateShape()

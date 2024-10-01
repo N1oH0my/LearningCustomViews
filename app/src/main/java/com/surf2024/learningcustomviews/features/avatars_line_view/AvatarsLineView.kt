@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import com.surf2024.learningcustomviews.R
 
@@ -90,7 +91,7 @@ class AvatarsLineView @JvmOverloads constructor(
      * Цвет обводки.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var avatarsBorderColor: Int = DEFAULT_AVATARS_BORDER_COLOR
+    var avatarsBorderColor: Int = ContextCompat.getColor(context, R.color.black)
         set(value) {
             field = value
             requestLayout()
