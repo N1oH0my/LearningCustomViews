@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        app:avatar_size="50dp"
+        app:avatar_size="100dp"
         app:avatars_margin="26dp"
         app:avatars_radius="50dp"
         app:max_avatars="5"

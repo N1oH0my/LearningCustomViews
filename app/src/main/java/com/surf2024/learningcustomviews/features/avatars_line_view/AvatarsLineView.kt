@@ -121,6 +121,8 @@ class AvatarsLineView @JvmOverloads constructor(
             val avatarView = AvatarView(context).apply {
                 layoutParams = LayoutParams(avatarSize.toInt(), avatarSize.toInt())
                 avatarRadius = this@AvatarsLineView.avatarRadius
+                borderColor = Color.WHITE
+                borderWidth = 5
                 setImage(urls[i])
             }
             addView(avatarView)
@@ -131,6 +133,9 @@ class AvatarsLineView @JvmOverloads constructor(
             val greyAvatarView = AvatarView(context).apply {
                 layoutParams = LayoutParams(avatarSize.toInt(), avatarSize.toInt())
                 avatarRadius = this@AvatarsLineView.avatarRadius
+                borderColor = Color.WHITE
+                borderWidth = 5
+                setImage("")
                 val textView = TextView(context).apply {
                     text = "+$remainingCount"
                     setTextColor(Color.WHITE)

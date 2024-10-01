@@ -5,6 +5,8 @@
     </declare-styleable>
     <declare-styleable name="AvatarView">
         <attr name="avatar_radius" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="border_width" format="dimension" />
     </declare-styleable>
     <declare-styleable name="AvatarsLineView">
         <attr name="max_avatars" format="integer" />
