@@ -15,7 +15,7 @@
         android:layout_marginTop="4dp"
         app:avatar_size="80dp"
         app:avatars_margin="120dp"
-        app:avatars_radius="50dp"
+        app:avatars_radius="30dp"
         app:max_avatars="4"
         app:avatars_border_color="#9051F8"
         app:avatars_border_width="5dp"

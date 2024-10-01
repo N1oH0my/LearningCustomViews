@@ -26,7 +26,7 @@ class CircularAvatarsLineFragmentView : Fragment() {
             "https://trikky.ru/wp-content/blogs.dir/1/files/2023/03/23/zyro-image-11.jpg",
             "https://trikky.ru/wp-content/blogs.dir/1/files/2023/03/23/zyro-image-11.jpg",
         )
-        circularImageView.setImages(imageUrls)
+        circularImageView.setImages(imageUrls, R.drawable.my_avatar_placeholder, lastPlaceholderResId = R.drawable.my_avatar_placeholder)
         return view
     }
 

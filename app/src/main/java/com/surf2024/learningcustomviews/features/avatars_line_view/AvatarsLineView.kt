@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.withStyledAttributes
 import com.surf2024.learningcustomviews.R
 
 /**
@@ -39,7 +40,7 @@ class AvatarsLineView @JvmOverloads constructor(
      * Максимальное количество изображений, которые могут быть отображены.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var maxImages: Int = 4
+    var maxImages: Int = DEFAULT_MAX_IMAGES
         set(value) {
             field = value
             requestLayout()
@@ -49,7 +50,7 @@ class AvatarsLineView @JvmOverloads constructor(
      * Радиус аватара.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var avatarRadius: Float = 20f
+    var avatarRadius: Float = DEFAULT_AVATAR_RADIUS_DP.dpToPx(context)
         set(value) {
             field = value
             requestLayout()
@@ -59,7 +60,7 @@ class AvatarsLineView @JvmOverloads constructor(
      * Размер аватара.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var avatarSize: Float = 200f
+    var avatarSize: Float = DEFAULT_AVATAR_SIZE_DP.dpToPx(context)
         set(value) {
             field = value
             requestLayout()
@@ -69,7 +70,7 @@ class AvatarsLineView @JvmOverloads constructor(
      * Отступ между аватарами.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var avatarsMargin: Float = 100f
+    var avatarsMargin: Float = DEFAULT_AVATARS_MARGIN_DP.dpToPx(context)
         set(value) {
             field = value
             requestLayout()
@@ -79,7 +80,7 @@ class AvatarsLineView @JvmOverloads constructor(
      * Размер текста.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var textSize: Float = 50f
+    var textSize: Float = DEFAULT_TEXT_SIZE_SP.spToPx(context)
         set(value) {
             field = value
             requestLayout()
@@ -89,7 +90,7 @@ class AvatarsLineView @JvmOverloads constructor(
      * Цвет обводки.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var avatarsBorderColor: Int = Color.WHITE
+    var avatarsBorderColor: Int = DEFAULT_AVATARS_BORDER_COLOR
         set(value) {
             field = value
             requestLayout()
@@ -99,27 +100,27 @@ class AvatarsLineView @JvmOverloads constructor(
      * Размер обводки.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var avatarsBorderWidth: Int = 10
+    var avatarsBorderWidth: Int = DEFAULT_AVATARS_BORDER_WIDTH_DP.toPx(context)
         set(value) {
             field = value
             requestLayout()
         }
 
     init {
-        context.theme.obtainStyledAttributes(attrs, R.styleable.AvatarsLineView, 0, 0).apply {
-            try {
-                maxImages = getInteger(R.styleable.AvatarsLineView_max_avatars, maxImages)
-                avatarRadius =
-                    getDimension(R.styleable.AvatarsLineView_avatars_radius, avatarRadius)
-                avatarSize = getDimension(R.styleable.AvatarsLineView_avatar_size, avatarSize)
-                avatarsMargin =
-                    getDimension(R.styleable.AvatarsLineView_avatars_margin, avatarsMargin)
-                textSize = getDimension(R.styleable.AvatarsLineView_text_size, textSize)
-                avatarsBorderColor = getColor(R.styleable.AvatarsLineView_avatars_border_color, avatarsBorderColor)
-                avatarsBorderWidth = getDimensionPixelSize(R.styleable.AvatarsLineView_avatars_border_width, avatarsBorderWidth)
-            } finally {
-                recycle()
-            }
+        context.withStyledAttributes(attrs, R.styleable.AvatarsLineView) {
+            maxImages = getInteger(R.styleable.AvatarsLineView_max_avatars, maxImages)
+            avatarRadius =
+                getDimension(R.styleable.AvatarsLineView_avatars_radius, avatarRadius)
+            avatarSize = getDimension(R.styleable.AvatarsLineView_avatar_size, avatarSize)
+            avatarsMargin =
+                getDimension(R.styleable.AvatarsLineView_avatars_margin, avatarsMargin)
+            textSize = getDimension(R.styleable.AvatarsLineView_text_size, textSize)
+            avatarsBorderColor =
+                getColor(R.styleable.AvatarsLineView_avatars_border_color, avatarsBorderColor)
+            avatarsBorderWidth = getDimensionPixelSize(
+                R.styleable.AvatarsLineView_avatars_border_width,
+                avatarsBorderWidth
+            )
         }
     }
 
@@ -133,7 +134,12 @@ class AvatarsLineView @JvmOverloads constructor(
      * @param urls Список URL изображений для загрузки и отображения.
      *             Если список пустой, то не будет создано ни одного аватара.
      */
-    fun setImages(urls: List<String>) {
+    fun setImages(
+        urls: List<String>,
+        placeholderResId: Int = R.drawable.avatar_view_placeholder,
+        errorResId: Int = R.drawable.avatar_view_placeholder,
+        lastPlaceholderResId: Int = R.drawable.avatar_view_placeholder,
+    ) {
         imageUrls = urls
         removeAllViews()
 
@@ -145,7 +151,7 @@ class AvatarsLineView @JvmOverloads constructor(
                 avatarRadius = this@AvatarsLineView.avatarRadius
                 borderColor = avatarsBorderColor
                 borderWidth = avatarsBorderWidth
-                setImage(urls[i])
+                setImage(urls[i], placeholderResId, errorResId)
             }
             addView(avatarView)
         }
@@ -157,7 +163,7 @@ class AvatarsLineView @JvmOverloads constructor(
                 avatarRadius = this@AvatarsLineView.avatarRadius
                 borderColor = avatarsBorderColor
                 borderWidth = avatarsBorderWidth
-                setImage("")
+                setImage("", lastPlaceholderResId, lastPlaceholderResId)
                 val textView = TextView(context).apply {
                     text = "+$remainingCount"
                     setTextColor(Color.WHITE)
@@ -228,4 +234,15 @@ class AvatarsLineView @JvmOverloads constructor(
             child.layout(l, t, r, b)
         }
     }
+
+    companion object {
+        private const val DEFAULT_MAX_IMAGES = 4
+        private const val DEFAULT_AVATAR_RADIUS_DP = 50f
+        private const val DEFAULT_AVATAR_SIZE_DP = 70f
+        private const val DEFAULT_AVATARS_MARGIN_DP = 45f
+        private const val DEFAULT_TEXT_SIZE_SP = 20f
+        private const val DEFAULT_AVATARS_BORDER_COLOR = Color.WHITE
+        private const val DEFAULT_AVATARS_BORDER_WIDTH_DP = 3
+    }
+
 }
