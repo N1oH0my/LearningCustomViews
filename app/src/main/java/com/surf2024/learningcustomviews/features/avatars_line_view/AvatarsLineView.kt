@@ -88,10 +88,20 @@ class AvatarsLineView @JvmOverloads constructor(
         }
 
     /**
+     * Цвет текста.
+     * При установке нового значения будет запрашиваться повторная компоновка.
+     */
+    var textColor: Int = ContextCompat.getColor(context, R.color.black)
+        set(value) {
+            field = value
+            requestLayout()
+        }
+
+    /**
      * Цвет обводки.
      * При установке нового значения будет запрашиваться повторная компоновка.
      */
-    var avatarsBorderColor: Int = ContextCompat.getColor(context, R.color.black)
+    var avatarsBorderColor: Int = ContextCompat.getColor(context, R.color.white)
         set(value) {
             field = value
             requestLayout()
@@ -118,6 +128,8 @@ class AvatarsLineView @JvmOverloads constructor(
             textSize = getDimension(R.styleable.AvatarsLineView_text_size, textSize)
             avatarsBorderColor =
                 getColor(R.styleable.AvatarsLineView_avatars_border_color, avatarsBorderColor)
+            textColor =
+                getColor(R.styleable.AvatarsLineView_text_color, textColor)
             avatarsBorderWidth = getDimensionPixelSize(
                 R.styleable.AvatarsLineView_avatars_border_width,
                 avatarsBorderWidth
@@ -167,7 +179,7 @@ class AvatarsLineView @JvmOverloads constructor(
                 setImage(errorResId = lastPlaceholderResId)
                 val textView = TextView(context).apply {
                     text = "+$remainingCount"
-                    setTextColor(Color.WHITE)
+                    setTextColor(textColor)
                     textSize =
                         this@AvatarsLineView.textSize / resources.displayMetrics.scaledDensity
                     gravity = Gravity.CENTER
@@ -242,7 +254,6 @@ class AvatarsLineView @JvmOverloads constructor(
         private const val DEFAULT_AVATAR_SIZE_DP = 70f
         private const val DEFAULT_AVATARS_MARGIN_DP = 45f
         private const val DEFAULT_TEXT_SIZE_SP = 20f
-        private const val DEFAULT_AVATARS_BORDER_COLOR = Color.WHITE
         private const val DEFAULT_AVATARS_BORDER_WIDTH_DP = 3
     }
 

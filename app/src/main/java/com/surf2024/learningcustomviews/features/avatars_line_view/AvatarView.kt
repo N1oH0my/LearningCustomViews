@@ -42,7 +42,7 @@ class AvatarView @JvmOverloads constructor(
             updateShape()
         }
 
-    var borderColor: Int = ContextCompat.getColor(context, R.color.black)
+    var borderColor: Int = ContextCompat.getColor(context, R.color.white)
         set(value) {
             field = value
             updateShape()
@@ -95,7 +95,6 @@ class AvatarView @JvmOverloads constructor(
 
     companion object {
         private const val DEFAULT_AVATAR_RADIUS = 50f
-        private const val DEFAULT_BORDER_COLOR = Color.WHITE
         private const val DEFAULT_BORDER_WIDTH = 4
     }
 

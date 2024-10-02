@@ -17,6 +17,7 @@
         app:avatars_margin="120dp"
         app:avatars_radius="30dp"
         app:max_avatars="4"
+        app:text_color="#6C1135"
         app:avatars_border_color="#9051F8"
         app:avatars_border_width="5dp"
         app:text_size="26sp">
