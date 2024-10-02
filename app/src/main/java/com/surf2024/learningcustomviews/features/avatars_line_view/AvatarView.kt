@@ -12,6 +12,7 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
+import androidx.core.view.updateLayoutParams
 import com.bumptech.glide.Glide
 import com.surf2024.learningcustomviews.R
 
@@ -58,7 +59,7 @@ class AvatarView @JvmOverloads constructor(
         addView(imageView)
         addView(borderView)
         context.withStyledAttributes(attrs, R.styleable.AvatarView) {
-            avatarRadius = getDimension(R.styleable.AvatarView_avatar_radius, 0f)
+            avatarRadius = getDimension(R.styleable.AvatarView_avatar_radius, avatarRadius)
             borderColor = getColor(R.styleable.AvatarView_border_color, borderColor)
             borderWidth = getDimensionPixelSize(
                 R.styleable.AvatarView_border_width,
@@ -81,16 +82,33 @@ class AvatarView @JvmOverloads constructor(
     }
 
     private fun updateShape() {
+        val margin = borderWidth / 2
         borderView.background = GradientDrawable().apply {
             setColor(Color.TRANSPARENT)
             setStroke(borderWidth, borderColor)
-            cornerRadius = avatarRadius - borderWidth / 2
+            cornerRadius = avatarRadius - margin
         }
+        imageView.setMargins(margin, margin, margin, margin)
         imageView.outlineProvider = object : ViewOutlineProvider() {
             override fun getOutline(view: View, outline: Outline) {
                 outline.setRoundRect(0, 0, view.width, view.height, avatarRadius)
             }
         }
+    }
+
+    private fun View.setMargins(
+        leftMargin: Int? = null,
+        topMargin: Int? = null,
+        rightMargin: Int? = null,
+        bottomMargin: Int? = null,
+    ) {
+        updateLayoutParams<MarginLayoutParams> {
+            if (leftMargin != null) this.leftMargin = leftMargin
+            if (topMargin != null) this.topMargin = topMargin
+            if (rightMargin != null) this.rightMargin = rightMargin
+            if (bottomMargin != null) this.bottomMargin = bottomMargin
+        }
+        requestLayout()
     }
 
     companion object {

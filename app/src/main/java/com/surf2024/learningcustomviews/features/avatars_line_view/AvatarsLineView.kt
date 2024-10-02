@@ -1,7 +1,7 @@
 package com.surf2024.learningcustomviews.features.avatars_line_view
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.ViewGroup
@@ -147,6 +147,7 @@ class AvatarsLineView @JvmOverloads constructor(
      * @param urls Список URL изображений для загрузки и отображения.
      *             Если список пустой, то не будет создано ни одного аватара.
      */
+    @SuppressLint("SetTextI18n")
     fun setImages(
         urls: List<String>,
         placeholderResId: Int = R.drawable.avatar_view_placeholder,
